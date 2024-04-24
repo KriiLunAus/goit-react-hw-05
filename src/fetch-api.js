@@ -12,7 +12,7 @@ const fetchConfiguration = async () => {
 
 
 
-const fetchMoviesWithQuery = async (query) => {
+export const fetchMoviesWithQuery = async (query) => {
 
     const config = await fetchConfiguration()
 
@@ -37,7 +37,41 @@ const fetchMoviesWithQuery = async (query) => {
 }
 
 
-export default fetchMoviesWithQuery;
+export const fetchMoviesById = async (id) => {
+    
+    const config = await fetchConfiguration()
+
+    const baseUrl = config.images.base_url;
+
+
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
+        
+        headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxODRhNjM0OWJiNTY0YmEyNzAyN2VkYWY2NDM4MDMyNSIsInN1YiI6IjY2MjdjZDU3Y2I2ZGI1MDE4NmIyMjMxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FtYNA8ZRc7FYj_CYiqINWrLQPnv0Fnyu2aKCqCe5S10'
+            }
+        
+    })
+
+    const responseWithConfig = {
+        data: {
+            ...response,
+            data: {
+                ...response.data,
+                poster_path: `${baseUrl}w500${response.data.poster_path}`
+            }
+        }} 
+
+
+
+    
+
+    return responseWithConfig;
+}
+
+
+
+
 
 
 

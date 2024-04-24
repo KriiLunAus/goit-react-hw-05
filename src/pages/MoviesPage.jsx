@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar"
 import MovieList from "../components/MovieList"
-import fetchMoviesWithQuery from "../fetch-api";
-
+import {fetchMoviesWithQuery} from "../fetch-api.js"
 const MoviesPage = () => {
     
     

@@ -10,7 +10,7 @@ const MovieList = ({movies}) => {
                 return (
                     
                     <li key={id}>
-                        <Link to={`/movies/:${id}`}>
+                        <Link to={`/movies/${id}`}>
                         { original_title }
                         </Link>    
                     </li>
