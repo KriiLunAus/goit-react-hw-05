@@ -70,6 +70,28 @@ export const fetchMoviesById = async (id) => {
 }
 
 
+export const fetchTrendingMovies = async () => {
+     const config = await fetchConfiguration()
+
+    const baseUrl = config.images.base_url;
+
+
+    const response = await axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`)
+
+    const responseWithConfig = {
+        data: {
+            ...response.data,
+            results: response.data.results.map(movie => ({
+                ...movie,
+                poster_path: `${baseUrl}${movie.poster_path}`
+            }))
+        }
+
+    } 
+
+
+    return responseWithConfig;
+}
 
 
 

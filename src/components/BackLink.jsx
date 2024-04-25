@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-export default function BackLink(to, location) {
+export default function BackLink(to) {
     return (
-        <Link to={to} state={location}>
+        <Link to={to} >
             Return
         </Link>
     )

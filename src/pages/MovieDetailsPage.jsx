@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import {fetchMoviesById} from "../fetch-api.js"
-import { useParams, useLocation } from "react-router-dom";
-import BackLink from "../components/BackLink.jsx";
+import { useParams } from "react-router-dom";
 
 export function MovieDetailsPage () {
 
 
     const movieId = useParams();
-    const location = useLocation();
-    const backLinkHref = location.state ?? "/movies";
-console.log(location.state)
+
 
     const [movieData, setMovieData] = useState([]);
     const [loader, setLoader] = useState(false);
@@ -36,7 +33,6 @@ console.log(location.state)
     
 },[movieId])
 
-console.log(movieData)
 
     
     if (movieData.length >= 0) {
@@ -51,8 +47,14 @@ console.log(movieData)
 
     return (
         <>
-            <BackLink location={location} to={backLinkHref}>Back to movies</BackLink>
-        <img src={movieData.poster_path} alt={movieData.title} />
+            <img src={movieData.poster_path} alt={movieData.title} />
+            <h2>{movieData.original_title}</h2>
+            <div>Overview{movieData.overview}</div>
+            <ul> 
+                <li>Budget:{movieData.budget}</li>
+                <li>Revenue: {movieData.revenue}</li>
+            </ul>
+               <div> Genres{movieData.genres.map((genre) => { return <li key={genre.id}>{genre.name}</li>})}</div>
         </>
     )
 }
