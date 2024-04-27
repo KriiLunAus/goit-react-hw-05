@@ -4,9 +4,11 @@ import HomePage from "../pages/HomePage.jsx";
 import MoviesPage from "../pages/MoviesPage.jsx";
 import { MovieDetailsPage } from "../pages/MovieDetailsPage.jsx"
 import NotFoundPage from "../pages/NotFoundPage.jsx";
+import {MovieCast} from "./MovieCast.jsx";
+import MovieReviews from "./MovieReviews.jsx";
+
 function App() {
 
-  
 
     return (
         <>
@@ -15,11 +17,15 @@ function App() {
         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/movies" element={<MoviesPage />} />
-            <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+            <Route path="/movies/:movieId" element={<MovieDetailsPage />}>   
+                <Route path="cast" element={<MovieCast />} />
+                <Route path="reviews" element={<MovieReviews/>} />
+            </Route>
             <Route path="*" element={ <NotFoundPage />} />    
         </Routes>   
 
         </>
+
     )
 }
 

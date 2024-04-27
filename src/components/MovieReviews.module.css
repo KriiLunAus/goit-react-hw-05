@@ -1,0 +1,15 @@
+.reviewList {
+  margin: auto;
+  background-color: #f0f0f0;
+}
+
+.reviewList > li {
+  padding: 20px;
+  margin-bottom: 40px;
+  border: 2px solid orangered;
+}
+
+.reviewList > li > p {
+  display: flex;
+  align-items: center;
+}

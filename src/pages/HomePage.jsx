@@ -28,7 +28,6 @@ const HomePage = () => {
         }
         fetchMovies()
     },[])
-console.log(movies)
 
     return (
         <>

@@ -1,0 +1,93 @@
+/* .movieDataWrapper {
+  display: flex;
+}
+
+.poster {
+  width: 500px;
+  margin: 20px;
+  box-shadow: 10px 14px 8px rgba(0, 0, 0, 0.6);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.overview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoInner {
+  border: 2px solid orangered;
+  width: 500px;
+}
+
+.infoInner > ul {
+  border-top: 2px solid orangered;
+} */
+
+/* MovieDataWrapper.module.css */
+
+.movieDataWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.poster {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.infoInner {
+  margin-top: 10px;
+}
+
+.overview > span {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 5px;
+}
+
+.buttonList {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.additionalInfoBtn {
+  padding: 15px;
+  border: 2px solid orangered;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  color: black;
+}
+
+.active {
+  background-color: aqua;
+}
+
+.genreList {
+  display: flex;
+  gap: 15px;
+}

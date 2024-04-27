@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import {fetchMoviesById} from "../fetch-api.js"
-import { useParams } from "react-router-dom";
+import {fetchMoviesById}  from "../fetch-api.js"
+import { fetchMovieCast } from "../fetch-api.js";
+import { useParams} from "react-router-dom";
+import MovieDetails from "../components/MovieDetails.jsx";
 
 export function MovieDetailsPage () {
 
@@ -8,7 +10,7 @@ export function MovieDetailsPage () {
     const movieId = useParams();
 
 
-    const [movieData, setMovieData] = useState([]);
+    const [movieData, setMovieData] = useState(null);
     const [loader, setLoader] = useState(false);
     const [error, setError] = useState(false);
     useEffect(() => {
@@ -19,9 +21,8 @@ export function MovieDetailsPage () {
 
                 setError(false);
                 setLoader(true);
-
                 const movie = await fetchMoviesById(movieId.movieId)
-                setMovieData(movie.data.data)
+                setMovieData(movie.data.data);
             } catch {
                 setError(true)
             }
@@ -33,28 +34,12 @@ export function MovieDetailsPage () {
     
 },[movieId])
 
-
     
-    if (movieData.length >= 0) {
-        return (
-            <>
-                {loader && <p>Loading data, please wait .... </p>}
-                {error && <p>Oops, something went wrong.</p>}
-            </>
-        )
-    }
-    
-
-    return (
-        <>
-            <img src={movieData.poster_path} alt={movieData.title} />
-            <h2>{movieData.original_title}</h2>
-            <div>Overview{movieData.overview}</div>
-            <ul> 
-                <li>Budget:{movieData.budget}</li>
-                <li>Revenue: {movieData.revenue}</li>
-            </ul>
-               <div> Genres{movieData.genres.map((genre) => { return <li key={genre.id}>{genre.name}</li>})}</div>
+  return (
+      <>
+        {movieData && <MovieDetails movieData={movieData} />}
+        {loader && <p>Loading data, please wait .... </p>}
+        {error && <p>Oops, something went wrong.</p>}
         </>
     )
 }

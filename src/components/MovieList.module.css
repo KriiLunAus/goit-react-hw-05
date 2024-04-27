@@ -1,0 +1,15 @@
+.movieList {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1440px;
+  margin: auto;
+}
+.movieListElement {
+  width: 300px;
+  padding: 20px;
+}
+
+.title {
+  color: black;
+  text-align: center;
+}

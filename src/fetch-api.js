@@ -2,10 +2,10 @@ import axios from "axios";
 
 
 const apiKey = "184a6349bb564ba27027edaf64380325"; 
-
+axios.defaults.baseURL = "https://api.themoviedb.org/3"
 
 const fetchConfiguration = async () => {
-    const response = await axios.get(`https://api.themoviedb.org/3/configuration?api_key=${apiKey}`);
+    const response = await axios.get(`/configuration?api_key=${apiKey}`);
     return response.data;
 }
 
@@ -19,14 +19,14 @@ export const fetchMoviesWithQuery = async (query) => {
     const baseUrl = config.images.base_url;
 
 
-    const response = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${apiKey}`)
+    const response = await axios.get(`/search/movie?query=${query}&api_key=${apiKey}`)
 
     const responseWithConfig = {
         data: {
             ...response.data,
             results: response.data.results.map(movie => ({
                 ...movie,
-                poster_path: `${baseUrl}${movie.poster_path}`
+                poster_path: `${baseUrl}w300${movie.poster_path}`
             }))
         }
 
@@ -44,7 +44,7 @@ export const fetchMoviesById = async (id) => {
     const baseUrl = config.images.base_url;
 
 
-    const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
+    const response = await axios.get(`/movie/${id}`, {
         
         headers: {
                 accept: 'application/json',
@@ -76,14 +76,14 @@ export const fetchTrendingMovies = async () => {
     const baseUrl = config.images.base_url;
 
 
-    const response = await axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`)
+    const response = await axios.get(`/trending/movie/day?api_key=${apiKey}`)
 
     const responseWithConfig = {
         data: {
             ...response.data,
             results: response.data.results.map(movie => ({
                 ...movie,
-                poster_path: `${baseUrl}${movie.poster_path}`
+                poster_path: `${baseUrl}w500${movie.poster_path}`
             }))
         }
 
@@ -94,7 +94,26 @@ export const fetchTrendingMovies = async () => {
 }
 
 
+export const fetchMovieCast = async (id) => {
+    
+    const response = await axios.get(`/movie/${id}/credits`, {
+         headers: {
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxODRhNjM0OWJiNTY0YmEyNzAyN2VkYWY2NDM4MDMyNSIsInN1YiI6IjY2MjdjZDU3Y2I2ZGI1MDE4NmIyMjMxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FtYNA8ZRc7FYj_CYiqINWrLQPnv0Fnyu2aKCqCe5S10'
+            }
+    })
+
+    return response.data.cast;
+}
 
 
+export const fetchMovieReviews = async (id) => {
+     const response = await axios.get(`/movie/${id}/reviews`, {
+         headers: {
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxODRhNjM0OWJiNTY0YmEyNzAyN2VkYWY2NDM4MDMyNSIsInN1YiI6IjY2MjdjZDU3Y2I2ZGI1MDE4NmIyMjMxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FtYNA8ZRc7FYj_CYiqINWrLQPnv0Fnyu2aKCqCe5S10'
+            }
+    })
+
+    return response.data.results;
+}
 
  

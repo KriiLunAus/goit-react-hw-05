@@ -1,14 +1,23 @@
 import { NavLink } from "react-router-dom";
+import css from "./Navigation.module.css"
+import clsx from "clsx";
+
+
+
+const buildLinkClass = ({ isActive }) => {
+  return clsx(css.navBtns, isActive && css.active);
+};
+
 
 const Navigation = () => {
     
     return (
     <>
-    <nav>
-        <NavLink to="/">
+    <nav className={css.linksWrapper}>
+        <NavLink className={buildLinkClass}  to="/">
         Home
         </NavLink>
-        <NavLink to="/movies">
+        <NavLink className={buildLinkClass} to="/movies">
         Movies
         </NavLink>
     </nav>

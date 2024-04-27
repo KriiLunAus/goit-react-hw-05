@@ -1,0 +1,20 @@
+.linksWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: teal;
+}
+
+.navBtns {
+  padding: 15px;
+  border: 2px solid orangered;
+  border-radius: 5px;
+  background-color: tela;
+  color: white;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.active {
+  background-color: orangered;
+}

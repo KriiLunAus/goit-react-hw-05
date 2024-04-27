@@ -11,24 +11,30 @@ const MoviesPage = () => {
     const [query, setQuery] = useState("");
 
     useEffect(() => {
-        async function fetchMovies() { 
-            try {
-
-                setLoader(true);
-                setError(false);
-
-                const data = await fetchMoviesWithQuery(query);
-                setMovies(data.data.results);
-            }
-            catch {
-                setError(true)
-            }
-            finally {
-                setLoader(false)
-            }
+      
+            
+            async function fetchMovies() { 
+                try {
+                    
+                    setLoader(true);
+                    setError(false);
+                    
+                    const data = await fetchMoviesWithQuery(query);
+                    setMovies(data.data.results);
+                }
+                catch {
+                    setError(true)
+                }
+                finally {
+                    setLoader(false)
+                }
         }
-        fetchMovies()
-    },[query])
+        
+          
+        if (query !== "") {
+            fetchMovies()
+        }
+        },[query])
 
     const handleSubmit = (inputValue) => {
         setQuery(inputValue.query)

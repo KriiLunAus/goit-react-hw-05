@@ -1,22 +1,25 @@
 import { Link } from "react-router-dom"
-
+import css from "./MovieList.module.css"
 const MovieList = ({movies}) => {
-    
+    console.log(movies)
     return (
         <>
-  
-            {movies.map(({ id, original_title }) => {
+            <ul className={css.movieList}>
+                
+            {movies.map(({ id, original_title, poster_path }) => {
                 const state = { id };
-                console.log(state)
+                
                 return (
                     
-                    <li key={id}>
-                        <Link to={`/movies/${id}` } state={state}>
-                        { original_title }
+                    <li className={css.movieListElement} key={id}>
+                        <Link to={`/movies/${id}`} state={state}>
+                            <img src={poster_path} alt={original_title} />
+                            <p className={css.title}>{original_title }</p>
                         </Link>    
                     </li>
                 )
             })} 
+            </ul>
             </>
 )
 }
