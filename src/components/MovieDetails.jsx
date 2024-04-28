@@ -1,8 +1,9 @@
-import { NavLink, Outlet } from "react-router-dom"
+import { NavLink, Outlet, useLocation } from "react-router-dom"
 import css from "./MovieDetails.module.css"
 import clsx from "clsx";
 export default function MovieDetails({ movieData }) {
    
+
     const buildLinkClass = ({ isActive }) => {
   return clsx(css.additionalInfoBtn, isActive && css.active);
 };

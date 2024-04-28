@@ -21,7 +21,6 @@ useEffect(() => {
                 setError(false);
                 setLoader(true);
                 const reviews = await fetchMovieReviews(movieId.movieId);
-                console.log(reviews)
                 setReviews(reviews);
             } catch (error){
                 setError(true)
@@ -34,14 +33,14 @@ useEffect(() => {
     
 }, [movieId])
     
-    console.log(reviews)
 
     
     if (reviews) {
         
         return ( 
             <>
-            {loader && <p>Loading data, please wait .... </p>}
+                {loader && <p>Loading data, please wait .... </p>}
+                {error && <p>There is no available reviews for this film.</p>}
             {reviews.length <=0 && <p>There is no available reviews for this movie.</p>}
             <ul className={css.reviewList}>
                 {reviews.map(review => {

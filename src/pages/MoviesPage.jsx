@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar"
 import MovieList from "../components/MovieList"
 import {fetchMoviesWithQuery} from "../fetch-api.js"
+import { useSearchParams } from "react-router-dom";
 const MoviesPage = () => {
     
     
@@ -10,40 +11,50 @@ const MoviesPage = () => {
     const [error, setError] = useState(false);
     const [query, setQuery] = useState("");
 
+    const [searchParams, setSearchParams] = useSearchParams();
+    const movieParam = searchParams.get("movie") ?? "";
+
     useEffect(() => {
       
             
-            async function fetchMovies() { 
-                try {
+        async function fetchMovies() {
+            try {
                     
-                    setLoader(true);
-                    setError(false);
+                setLoader(true);
+                setError(false);
                     
-                    const data = await fetchMoviesWithQuery(query);
-                    setMovies(data.data.results);
-                }
-                catch {
-                    setError(true)
-                }
-                finally {
-                    setLoader(false)
-                }
+                const data = await fetchMoviesWithQuery(query);
+                setMovies(data.data.results);
+            }
+            catch {
+                setError(true)
+            }
+            finally {
+                setLoader(false)
+            }
         }
-        
-          
         if (query !== "") {
             fetchMovies()
         }
-        },[query])
+    }, [query]);
+    
+useEffect(() => {
+        if (movieParam) {
+            setQuery(movieParam);
+        }
+    }, [movieParam]);
 
-    const handleSubmit = (inputValue) => {
+    const changeQueryAndParam = (inputValue) => {
         setQuery(inputValue.query)
+
+        searchParams.set("movie", inputValue.query);
+        setSearchParams(searchParams);
     }
     return (
         <>
-        <SearchBar onSubmit={handleSubmit} />
+        <SearchBar onSubmit={changeQueryAndParam} value={movieParam}/>
             
-            <MovieList movies={ movies } />
+            {movies.length > 0 && <MovieList movies={movies}   />}
 
             
             {loader && <p>Loading, please wait ...</p>}

@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {fetchMoviesById}  from "../fetch-api.js"
-import { fetchMovieCast } from "../fetch-api.js";
-import { useParams} from "react-router-dom";
+import { useLocation,  useParams} from "react-router-dom";
 import MovieDetails from "../components/MovieDetails.jsx";
-
-export function MovieDetailsPage () {
+import BackLink from "../components/BackLink.jsx"
+export default function MovieDetailsPage () {
 
 
     const movieId = useParams();
 
+    const location = useLocation();
+    const backLinkUrlRef = useRef(location.state ?? "/movies");
 
     const [movieData, setMovieData] = useState(null);
     const [loader, setLoader] = useState(false);
@@ -37,6 +38,7 @@ export function MovieDetailsPage () {
     
   return (
       <>
+        <BackLink to={backLinkUrlRef.current} />
         {movieData && <MovieDetails movieData={movieData} />}
         {loader && <p>Loading data, please wait .... </p>}
         {error && <p>Oops, something went wrong.</p>}

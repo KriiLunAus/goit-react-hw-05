@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchMovieCast } from "../fetch-api";
 import css from "./MovieCast.module.css"
 
-export const MovieCast = () => {
+export default function  MovieCast  () {
     const [cast, setCast] = useState(null); 
     const [loader, setLoader] = useState(false);
     const [error, setError] = useState(false);

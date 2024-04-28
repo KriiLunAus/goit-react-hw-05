@@ -1,5 +1,6 @@
 .movieList {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   width: 1440px;
   margin: auto;
