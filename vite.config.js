@@ -7,5 +7,8 @@ export default defineConfig({
   plugins: [react()],
   build: {
     sourcemap: true,
+    rollupOptions: {
+      external: ['react-icons/io5', 'modern-normalize'],
+    }
   }
 });
