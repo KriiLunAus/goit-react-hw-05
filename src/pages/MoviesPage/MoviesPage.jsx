@@ -9,8 +9,6 @@ const MoviesPage = () => {
     const [movies, setMovies] = useState([]);
     const [loader, setLoader] = useState(false);
     const [error, setError] = useState(false);
-    const [query, setQuery] = useState("");
-
     const [searchParams, setSearchParams] = useSearchParams();
     const movieParam = searchParams.get("movie") ?? "";
 
@@ -23,7 +21,7 @@ const MoviesPage = () => {
                 setLoader(true);
                 setError(false);
                     
-                const data = await fetchMoviesWithQuery(query);
+                const data = await fetchMoviesWithQuery(movieParam);
                 setMovies(data.data.results);
             }
             catch {
@@ -33,19 +31,13 @@ const MoviesPage = () => {
                 setLoader(false)
             }
         }
-        if (query !== "") {
+        if (movieParam !== "") {
             fetchMovies()
         }
-    }, [query]);
-    
-useEffect(() => {
-        if (movieParam) {
-            setQuery(movieParam);
-        }
     }, [movieParam]);
+    
 
     const changeQueryAndParam = (inputValue) => {
-        setQuery(inputValue.query)
 
         searchParams.set("movie", inputValue.query);
         setSearchParams(searchParams);
