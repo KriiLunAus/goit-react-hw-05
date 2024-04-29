@@ -2,7 +2,7 @@ import {  useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { fetchMovieReviews } from "../../fetch-api";
 import css from "./MovieReviews.module.css"
-import { IoPersonCircle } from "react-icons/io5";
+// import { IoPersonCircle } from "react-icons/io5";
 
 
 export default function MovieReviews() {
@@ -47,7 +47,7 @@ useEffect(() => {
                     return ( 
                         <>
                             <li key={review.id}>
-                                <p style={{fontSize: "30px"}}><IoPersonCircle size={30}/>{review.author}</p>
+                                <p style={{fontSize: "30px"}}>{review.author}</p>
                                 <h4>Review:</h4>
                                 <p>{review.content }</p>
                             </li>
