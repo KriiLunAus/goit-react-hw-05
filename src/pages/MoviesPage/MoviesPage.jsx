@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import SearchBar from "../components/SearchBar"
-import MovieList from "../components/MovieList"
-import {fetchMoviesWithQuery} from "../fetch-api.js"
+import SearchBar from "../../components/SearchBar/SearchBar.jsx"
+import MovieList from "../../components/MovieList/MovieList.jsx"
+import {fetchMoviesWithQuery} from "../../fetch-api.js"
 import { useSearchParams } from "react-router-dom";
 const MoviesPage = () => {
     

@@ -1,5 +1,5 @@
-import MovieList from "../components/MovieList";
-import { fetchTrendingMovies } from "../fetch-api.js"
+import MovieList from "../../components/MovieList/MovieList.jsx";
+import { fetchTrendingMovies } from "../../fetch-api.js"
 import { useEffect, useState } from "react";
 
 

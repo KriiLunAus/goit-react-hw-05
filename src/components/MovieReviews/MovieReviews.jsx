@@ -1,6 +1,6 @@
 import {  useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
-import { fetchMovieReviews } from "../fetch-api";
+import { fetchMovieReviews } from "../../fetch-api";
 import css from "./MovieReviews.module.css"
 import { IoPersonCircle } from "react-icons/io5";
 

@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useLocation } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
 import css from "./MovieDetails.module.css"
 import clsx from "clsx";
 export default function MovieDetails({ movieData }) {
@@ -8,7 +8,7 @@ export default function MovieDetails({ movieData }) {
   return clsx(css.additionalInfoBtn, isActive && css.active);
 };
     return (
-        <>
+    <>
   <div className={css.movieDataWrapper}>
     <div>
       <img className={css.poster} src={movieData.poster_path} alt={movieData.title} />
@@ -49,10 +49,8 @@ export default function MovieDetails({ movieData }) {
     </div>
   </div>
 
-   
-
     <Outlet />
-            </>
+  </>
 );
 
 }

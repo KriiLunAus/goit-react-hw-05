@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import {fetchMoviesById}  from "../fetch-api.js"
+import {fetchMoviesById}  from "../../fetch-api.js"
 import { useLocation,  useParams} from "react-router-dom";
-import MovieDetails from "../components/MovieDetails.jsx";
-import BackLink from "../components/BackLink.jsx"
+import MovieDetails from "../../components/MovieDetails/MovieDetails.jsx";
+import BackLink from "../../components/BackLink/BackLink.jsx"
 export default function MovieDetailsPage () {
 
 
