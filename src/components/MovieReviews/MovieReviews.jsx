@@ -20,8 +20,8 @@ useEffect(() => {
 
                 setError(false);
                 setLoader(true);
-                const reviews = await fetchMovieReviews(movieId.movieId);
-                setReviews(reviews);
+                const reviewsData = await fetchMovieReviews(movieId.movieId);
+                setReviews(reviewsData);
             } catch (error){
                 setError(true)
             }
@@ -30,17 +30,14 @@ useEffect(() => {
             }
         }
         fetchReviews()
-    
-}, [movieId])
-    
 
     
-    if (reviews) {
-        
+}, [movieId.movieId])
+    
+
+if (reviews) {
         return ( 
             <>
-                {loader && <p>Loading data, please wait .... </p>}
-                {error && <p>There is no available reviews for this film.</p>}
             {reviews.length <=0 && <p>There is no available reviews for this movie.</p>}
             <ul className={css.reviewList}>
                 {reviews.map(review => {
@@ -57,5 +54,12 @@ useEffect(() => {
             </ul>
         </>
     )
+    } else {
+        return (
+            <>
+            {loader && <p>Loading data, please wait .... </p>}
+            {error && <p>Oops, something went wrong!!!</p>}
+            </>
+        )
 }
 }

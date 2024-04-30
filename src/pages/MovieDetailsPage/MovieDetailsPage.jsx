@@ -14,6 +14,7 @@ export default function MovieDetailsPage () {
     const [movieData, setMovieData] = useState(null);
     const [loader, setLoader] = useState(false);
     const [error, setError] = useState(false);
+
     useEffect(() => {
         
         
@@ -33,7 +34,7 @@ export default function MovieDetailsPage () {
         }
         fetchMovie()
     
-},[movieId])
+},[movieId.movieId])
 
     
   return (

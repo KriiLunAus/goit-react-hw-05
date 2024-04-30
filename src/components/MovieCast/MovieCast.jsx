@@ -28,15 +28,12 @@ useEffect(() => {
         }
         fetchCast()
     
-},[movieId])
+},[movieId.movieId])
 
 
 if (cast ) {
-
         return (
             <>
-             {loader && <p>Loading data, please wait .... </p>}
-             {error && <p>There is no available reviews for this film.</p>}
              <ul className={css.castList}>
                 {cast.map(castMember => {
                     return (
@@ -52,5 +49,12 @@ if (cast ) {
              
             </>
         )
+} else {
+    return (
+        <>
+        {loader && <p>Loading data, please wait .... </p>}
+        {error && <p>Oops, something went wrong!!!</p>}
+        </>
+    )
     }
 }
